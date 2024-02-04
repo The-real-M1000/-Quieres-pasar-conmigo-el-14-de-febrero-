@@ -53,22 +53,30 @@
         #yes.enlarge {
             transform: scale(1.2);
         }
+
+        #thanks-message {
+            display: none;
+            font-size: 24px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="question">¿Quieres continuar?</div>
-        <button id="yes" class="btn" onclick="redirectToThanksPage()">Sí</button>
+        <button id="yes" class="btn" onclick="showThanks()">Sí</button>
         <button id="no" class="btn" onclick="handleNo()">No</button>
+        <div id="thanks-message">¡Gracias!</div>
     </div>
 
     <script>
         let noClickCount = 0;
 
         function showThanks() {
-            document.getElementById('question').innerText = '¡Gracias!';
-            document.getElementById('yes').classList.add('enlarge');
-            document.getElementById('no').classList.remove('shrink');
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('yes').style.display = 'none';
+            document.getElementById('no').style.display = 'none';
+            document.getElementById('thanks-message').style.display = 'block';
         }
 
         function handleNo() {
@@ -91,11 +99,6 @@
             yesButton.style.height = (parseFloat(window.getComputedStyle(yesButton).height) * 1.2) + 'px';
 
             noClickCount++;
-        }
-
-        function redirectToThanksPage() {
-            // Cambiar la URL a tu subpágina de agradecimiento
-            window.location.href = 'gracias.html';  // Reemplaza 'subpagina.html' con la URL real de tu subpágina
         }
     </script>
 </body>

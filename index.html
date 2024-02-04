@@ -83,11 +83,28 @@
             const noButton = document.getElementById('no');
             noButton.classList.add('shrink');
             
-            if (noClickCount >= 1 && noClickCount < 6) {
-                noButton.innerText = `Texto ${noClickCount + 1}`;
-            } else {
-                noButton.innerText = `Texto 1`;
-                noClickCount = 0;
+            switch (noClickCount) {
+                case 1:
+                    noButton.innerText = '¿Segura?';
+                    break;
+                case 2:
+                    noButton.innerText = '¿Muy segura?';
+                    break;
+                case 3:
+                    noButton.innerText = '¿Muuuuuuuuy segura?';
+                    break;
+                case 4:
+                    noButton.innerText = '¿Segurísima?';
+                    break;
+                case 5:
+                    noButton.innerText = 'No te lo pregunto más, ¿segura?';
+                    break;
+                case 6:
+                    noButton.innerText = 'No te hagas rogar, ¿segura?';
+                    noClickCount = 0;  // Reinicia el contador al llegar a 6
+                    break;
+                default:
+                    break;
             }
 
             noButton.style.width = 'auto';

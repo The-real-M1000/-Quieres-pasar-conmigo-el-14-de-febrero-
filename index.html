@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        #yes {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        #no {
+            background-color: #FF0000;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        #no.shrink {
+            transform: scale(0.8);
+        }
+
+        #yes.enlarge {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="question">¿Quieres continuar?</div>
+        <button id="yes" class="btn" onclick="redirectToThanksPage()">Sí</button>
+        <button id="no" class="btn" onclick="handleNo()">No</button>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+
+        function showThanks() {
+            document.getElementById('question').innerText = '¡Gracias!';
+            document.getElementById('yes').classList.add('enlarge');
+            document.getElementById('no').classList.remove('shrink');
+        }
+
+        function handleNo() {
+            const noButton = document.getElementById('no');
+            noButton.classList.add('shrink');
+            
+            if (noClickCount >= 1 && noClickCount < 6) {
+                noButton.innerText = `Texto ${noClickCount + 1}`;
+            } else {
+                noButton.innerText = `Texto 1`;
+                noClickCount = 0;
+            }
+
+            noButton.style.width = 'auto';
+            noButton.style.height = 'auto';
+
+            const yesButton = document.getElementById('yes');
+            yesButton.classList.remove('enlarge');
+            yesButton.style.width = (parseFloat(window.getComputedStyle(yesButton).width) * 1.2) + 'px';
+            yesButton.style.height = (parseFloat(window.getComputedStyle(yesButton).height) * 1.2) + 'px';
+
+            noClickCount++;
+        }
+
+        function redirectToThanksPage() {
+            // Cambiar la URL a tu subpágina de agradecimiento
+            window.location.href = 'subpagina.html';  // Reemplaza 'subpagina.html' con la URL real de tu subpágina
+        }
+    </script>
+</body>
+</html>
